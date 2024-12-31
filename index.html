@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>汉字笔顺查询</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/free-vector/chinese-cloud-pattern-background_53876-91692.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: "楷体", "KaiTi", serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+            border: 3px solid #8b4513;
+            position: relative;
+            width: 600px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            color: #8b4513;
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+            position: relative;
+            letter-spacing: 10px;
+        }
+
+        h1::before, h1::after {
+            content: "「";
+            color: #8b4513;
+            position: absolute;
+            font-size: 36px;
+        }
+
+        h1::before {
+            left: 50px;
+        }
+
+        h1::after {
+            right: 50px;
+            transform: rotate(180deg);
+        }
+
+        #charInput {
+            font-size: 36px;
+            padding: 15px 30px;
+            width: 200px;
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-family: "楷体", "KaiTi", serif;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(139, 69, 19, 0.1);
+        }
+
+        #charInput:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(139, 69, 19, 0.3);
+            border-color: #d4a017;
+        }
+
+        .corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #8b4513;
+        }
+
+        .top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .decoration {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8b4513, transparent);
+            left: 0;
+        }
+
+        .top-decoration {
+            top: 100px;
+        }
+
+        .bottom-decoration {
+            bottom: 100px;
+        }
+
+        .input-container {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .input-container::before, .input-container::after {
+            content: "❖";
+            color: #8b4513;
+            font-size: 24px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .input-container::before {
+            left: 100px;
+        }
+
+        .input-container::after {
+            right: 100px;
+        }
+
+        .hint-text {
+            color: #8b4513;
+            font-size: 20px;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+        <div class="decoration top-decoration"></div>
+        <div class="decoration bottom-decoration"></div>
+
+        <h1>汉字笔顺</h1>
+        <div class="input-container">
+            <input type="text" id="charInput" maxlength="1" placeholder="请输入汉字">
+        </div>
+        <div class="hint-text">输入汉字后按回车键查看笔顺</div>
+    </div>
+
+    <script>
+        document.getElementById('charInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const char = this.value;
+                if (char) {
+                    window.open(`stroke-order.html?char=${encodeURIComponent(char)}`, '_blank');
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

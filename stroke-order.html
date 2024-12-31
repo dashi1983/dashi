@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>汉字笔顺演示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://pic.baike.soso.com/ugc/baikepic2/0/ori-20230905174642-1677941675_jpg_1024x682_190838.jpg/800');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "楷体", "KaiTi", serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            width: 800px;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border: 3px solid #8b4513;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            color: #8b4513;
+            font-size: 42px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+            position: relative;
+            letter-spacing: 5px;
+        }
+
+        h1::before, h1::after {
+            content: "◆";
+            color: #8b4513;
+            margin: 0 20px;
+            font-size: 28px;
+        }
+
+        #character {
+            font-size: 150px;
+            margin: 30px;
+            color: #000;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #8b4513, #000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #strokeAnimation {
+            width: 700px;
+            height: 600px;
+            margin: 20px auto;
+            border: 2px solid #8b4513;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #baiduFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #8b4513;
+        }
+
+        .top-left {
+            top: 15px;
+            left: 15px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .top-right {
+            top: 15px;
+            right: 15px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bottom-left {
+            bottom: 15px;
+            left: 15px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .bottom-right {
+            bottom: 15px;
+            right: 15px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* 添加古典装饰元素 */
+        .decoration {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8b4513, transparent);
+        }
+
+        .top-decoration {
+            top: 80px;
+        }
+
+        .bottom-decoration {
+            bottom: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+        <div class="decoration top-decoration"></div>
+        <div class="decoration bottom-decoration"></div>
+
+        <h1>汉字笔顺演示</h1>
+        <div id="character"></div>
+        <div id="strokeAnimation">
+            <iframe id="baiduFrame" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const char = urlParams.get('char');
+        
+        document.getElementById('character').textContent = char;
+        document.getElementById('baiduFrame').src = 
+            `https://hanyu.baidu.com/zici/s?wd=${encodeURIComponent(char)}&query=${encodeURIComponent(char)}`;
+    </script>
+</body>
+</html> 
